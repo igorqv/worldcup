@@ -21,3 +21,5 @@ Passos
 Foi instalado as bibliotecas necessarias e depois foi criado o codigo.
 
 Segue imagens do dashboard:
+
+Imagem 1 (https://github.com/igorqv/worldcup/blob/main/Img/dash1.png)
