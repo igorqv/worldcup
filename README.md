@@ -27,3 +27,6 @@ Segue imagens do dashboard:
 ![Imagem 2](https://github.com/igorqv/worldcup/blob/main/Img/dash2.png)
 
 ![Imagem 3](https://github.com/igorqv/worldcup/blob/main/Img/dash3.png)
+
+
+Conclusão: Economia surreal de horas em 5 minutos. Em um projeto real, o analista se preocupa com a resolução do projeto, com acuracia dos dados e o seu valor entregue.
