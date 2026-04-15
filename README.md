@@ -20,3 +20,4 @@ Passos
 
 Foi instalado as bibliotecas necessarias e depois foi criado o codigo.
 
+Segue imagens do dashboard:
