@@ -2,7 +2,8 @@
 Projeto do curso Trilha Claude Code da "Sua Jornada de dados"
 
 Arquivos estão disponibilizados no Kaggle
-Link:https://www.kaggle.com/datasets/piterfm/fifa-football-world-cup
+Link:
+https://www.kaggle.com/datasets/piterfm/fifa-football-world-cup
 
 Objetivo: Criar um dashboard com comando no Claude Code (Utilizei o modelo Haiku para verificar a resposta).
 
@@ -16,3 +17,6 @@ Passos
 - Iniciar terminal do Claude 
 - Script para solicitar o dashboard a Claude
 "Você é um analista de dados de python. Analise os 3 arquivos CSV na pasta 'data/archive/'. Com base na analise crie um dashboard interativo com Streamlit ('dashboard.py') com KPIs e visualizações, use Pandas para ler e tratar  os CSVs e Plotly para os graficos. 
+
+Foi instalado as bibliotecas necessarias e depois foi criado o codigo.
+
