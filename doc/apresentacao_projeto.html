@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Copa do Mundo - Apresentação Executiva</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* ===== SLIDES ===== */
+        .slide {
+            background: white;
+            border-radius: 15px;
+            padding: 60px 40px;
+            margin: 30px 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            min-height: 600px;
+            display: none;
+            animation: slideIn 0.5s ease-in-out;
+            page-break-after: always;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== TÍTULOS E TEXTOS ===== */
+        h1 {
+            font-size: 3.5em;
+            color: #667eea;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            color: #667eea;
+            margin-bottom: 30px;
+            border-bottom: 4px solid #764ba2;
+            padding-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 1.8em;
+            color: #764ba2;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        /* ===== SLIDES ESPECIAIS ===== */
+        .slide-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            min-height: 700px;
+        }
+
+        .slide-title h1 {
+            font-size: 4em;
+            margin-bottom: 30px;
+        }
+
+        .slide-title .emoji-grande {
+            font-size: 8em;
+            margin-bottom: 30px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .slide-title p {
+            font-size: 1.5em;
+            color: #666;
+        }
+
+        /* ===== CAIXAS DE CONTEÚDO ===== */
+        .box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: 1.1em;
+        }
+
+        .box.info {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .box.success {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .box.warning {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .box strong {
+            font-size: 1.3em;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* ===== LISTA COM EMOJIS ===== */
+        .lista-emoji {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .lista-emoji li {
+            font-size: 1.2em;
+            padding: 12px 0;
+            padding-left: 50px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .lista-emoji li:before {
+            position: absolute;
+            left: 0;
+            font-size: 1.5em;
+        }
+
+        /* ===== GRID DE COLUNAS ===== */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .grid-item {
+            background: #f5f5f5;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+        }
+
+        .grid-item h3 {
+            margin-top: 0;
+        }
+
+        .grid-item .emoji-item {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        /* ===== TABELAS ===== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 1.1em;
+        }
+
+        table th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table tr:hover {
+            background: #f9f9f9;
+        }
+
+        /* ===== NAVEGAÇÃO ===== */
+        .controls {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+            background: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1em;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .slide-counter {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        /* ===== KPI CARDS ===== */
+        .kpi-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .kpi-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .kpi-card .value {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .kpi-card .label {
+            font-size: 0.95em;
+            opacity: 0.9;
+        }
+
+        .kpi-card .emoji {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        /* ===== IMPRESSÃO ===== */
+        @media print {
+            body {
+                background: white;
+            }
+
+            .controls {
+                display: none;
+            }
+
+            .slide {
+                page-break-after: always;
+                box-shadow: none;
+                margin: 0;
+                padding: 40px;
+            }
+
+            .slide {
+                display: block !important;
+            }
+        }
+
+        .emoji-texto {
+            font-size: 2em;
+            margin: 0 5px;
+        }
+
+        .destaque {
+            background: #fff3cd;
+            padding: 20px;
+            border-left: 5px solid #ffc107;
+            border-radius: 5px;
+            margin: 20px 0;
+            font-size: 1.1em;
+        }
+
+        .centered {
+            text-align: center;
+        }
+
+        .logo-section {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .logo-section .big-emoji {
+            font-size: 5em;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- ========== SLIDE 1: TÍTULO ========== -->
+        <div class="slide active slide-title">
+            <div class="emoji-grande">⚽</div>
+            <h1>Copa do Mundo FIFA</h1>
+            <h2 style="border: none; color: #764ba2; font-size: 2em;">Um Projeto de Dados Incrível</h2>
+            <p>Descobrindo histórias escondidas nos números desde 1930</p>
+            <p style="margin-top: 40px; font-size: 1.1em; color: #999;">🎯 Apresentação Executiva</p>
+        </div>
+
+        <!-- ========== SLIDE 2: O QUE É ESTE PROJETO? ========== -->
+        <div class="slide">
+            <h2>📱 O que é este projeto?</h2>
+
+            <p style="font-size: 1.3em; margin: 30px 0;">Imagina que você quer entender tudo sobre a Copa do Mundo... <strong>Quem foi campeão? Quantos gols foram marcados? Quem jogou melhor?</strong></p>
+
+            <div class="box info">
+                <strong>🎯 A IDEIA PRINCIPAL</strong>
+                Pegamos TODOS os dados sobre Copa do Mundo (desde 1930!) e colocamos em um lugar bonito e fácil de entender. É como um videogame onde você pode explorar histórias da Copa!
+            </div>
+
+            <h3>Por que criamos este projeto? 🤔</h3>
+            <ul class="lista-emoji" style="--emoji-content: '✨';">
+                <li>Para deixar os dados da Copa bonitos e fáceis de entender</li>
+                <li>Para descobrir padrões interessantes nos números</li>
+                <li>Para mostrar a história da Copa de forma visual</li>
+                <li>Para tomar decisões melhores com base em dados reais</li>
+            </ul>
+        </div>
+
+        <!-- ========== SLIDE 3: OS DADOS (CSVs) ========== -->
+        <div class="slide">
+            <h2>📊 Os Dados que Usamos</h2>
+
+            <p style="margin-bottom: 30px;">Pegamos <strong>3 arquivos CSV do Kaggle</strong> (um site com muitos dados para análise):</p>
+
+            <div class="grid-3">
+                <div class="grid-item">
+                    <div class="emoji-item">🏆</div>
+                    <h3>world_cup.csv</h3>
+                    <p><strong>O quê:</strong> Informações sobre cada Copa do Mundo</p>
+                    <p><strong>Exemplos:</strong> Qual país foi campeão? Vice-campeão? Quantos times participaram? Quantas partidas foram?</p>
+                </div>
+
+                <div class="grid-item">
+                    <div class="emoji-item">⚽</div>
+                    <h3>matches_1930_2022.csv</h3>
+                    <p><strong>O quê:</strong> Todos os jogos desde 1930</p>
+                    <p><strong>Exemplos:</strong> Quem jogou? Qual foi o resultado? Quantos gols cada time fez?</p>
+                </div>
+
+                <div class="grid-item">
+                    <div class="emoji-item">🎖️</div>
+                    <h3>fifa_ranking_2022-10-06.csv</h3>
+                    <p><strong>O quê:</strong> Ranking dos melhores times do mundo (2022)</p>
+                    <p><strong>Exemplos:</strong> Qual time é o melhor? Quantos pontos tem cada um?</p>
+                </div>
+            </div>
+
+            <div class="destaque">
+                <strong>💡 Resumindo:</strong> São como 3 livros diferentes sobre Copa do Mundo. Um fala dos campeões, outro dos jogos, e o terceiro do ranking dos times!
+            </div>
+        </div>
+
+        <!-- ========== SLIDE 4: AS BIBLIOTECAS ========== -->
+        <div class="slide">
+            <h2>🛠️ As Ferramentas Mágicas que Usamos</h2>
+
+            <p style="margin-bottom: 30px;">Usamos <strong>4 bibliotecas Python</strong> (linguagem de programação) para fazer tudo funcionar:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>📦 Biblioteca</th>
+                        <th>🎯 Para quê?</th>
+                        <th>🔍 Exemplo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Streamlit</strong></td>
+                        <td>Criar a página web interativa e bonita</td>
+                        <td>Quando você clica em um botão e vê os dados mudarem</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pandas</strong></td>
+                        <td>Ler, organizar e manipular os dados dos CSVs</td>
+                        <td>Separar times por confederação, somar gols, etc</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Plotly</strong></td>
+                        <td>Criar gráficos bonitos e interativos</td>
+                        <td>Os gráficos coloridos que você vê na tela</td>
+                    </tr>
+                    <tr>
+                        <td><strong>NumPy</strong></td>
+                        <td>Fazer contas rápidas com números</td>
+                        <td>Calcular médias, somas, porcentagens</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="destaque">
+                <strong>🎨 Pense assim:</strong> Se fosse um bolo, Pandas seria os ingredientes (dados), NumPy seria o misturador, Plotly seria a cobertura (gráficos), e Streamlit seria a caixa bonita onde você compra o bolo!
+            </div>
+        </div>
+
+        <!-- ========== SLIDE 5: COMO O CÓDIGO FUNCIONA ========== -->
+        <div class="slide">
+            <h2>⚙️ Como o Código Funciona?</h2>
+
+            <h3>5 Passos Simples:</h3>
+
+            <div style="margin: 30px 0;">
+                <div class="box success">
+                    <strong>1️⃣ LER OS DADOS</strong>
+                    O código abre os 3 arquivos CSV e carrega todos os dados sobre Copa do Mundo
+                </div>
+
+                <div class="box success">
+                    <strong>2️⃣ LIMPAR OS DADOS</strong>
+                    Tira dados ruins ou incompletos (como jogar fora maçãs podres)
+                </div>
+
+                <div class="box success">
+                    <strong>3️⃣ CALCULAR COISAS INTERESSANTES</strong>
+                    Faz contas para saber quantos gols cada time fez, quem venceu mais, etc
+                </div>
+
+                <div class="box success">
+                    <strong>4️⃣ CRIAR GRÁFICOS BONITOS</strong>
+                    Transforma números chatos em figuras coloridas e interessantes
+                </div>
+
+                <div class="box success">
+                    <strong>5️⃣ MOSTRAR TUDO DE FORMA BONITA</strong>
+                    Coloca tudo junto em uma página web que qualquer pessoa pode usar
+                </div>
+            </div>
+
+            <div class="destaque">
+                <strong>💻 É como cozinhar:</strong> Você pega os ingredientes (dados), prepara tudo (limpa), faz o prato (calcula), decora (gráficos), e serve bonito (Streamlit)!
+            </div>
+        </div>
+
+        <!-- ========== SLIDE 6: O QUE O CÓDIGO FAZ? ========== -->
+        <div class="slide">
+            <h2>🎬 O que acontece quando você abre o dashboard?</h2>
+
+            <p>O código mostra <strong>muita informação interessante</strong>:</p>
+
+            <div class="grid-2">
+                <div class="grid-item">
+                    <div class="emoji-item">📊</div>
+                    <h3>KPIs (Números Importantes)</h3>
+                    <p>Mostra os números mais importantes: total de partidas, gols marcados, maior goleada, partidas 0x0, edições analisadas</p>
+                </div>
+
+                <div class="grid-item">
+                    <div class="emoji-item">🏆</div>
+                    <h3>Campeões e Desempenho</h3>
+                    <p>Mostra quem foram os campeões históricos, top times com mais vitórias, e quais times marcaram mais gols</p>
+                </div>
+
+                <div class="grid-item">
+                    <div class="emoji-item">📈</div>
+                    <h3>Evolução Histórica</h3>
+                    <p>Mostra como os gols mudaram ao longo dos anos, qual foi a evolução do número de times e partidas</p>
+                </div>
+
+                <div class="grid-item">
+                    <div class="emoji-item">🌍</div>
+                    <h3>Análise por Confederação</h3>
+                    <p>Mostra quais confederações (regiões) têm os times mais fortes do mundo</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== SLIDE 7: OS KPIs ========== -->
+        <div class="slide">
+            <h2>📊 Os KPIs (Números que Importam)</h2>
+
+            <p style="margin-bottom: 30px;">KPI significa "Indicador-Chave de Desempenho" - são os números mais importantes!</p>
+
+            <div class="kpi-container">
+                <div class="kpi-card">
+                    <div class="emoji">⚽</div>
+                    <div class="label">Total de Partidas</div>
+                    <div class="value">?</div>
+                    <p style="margin-top: 10px; font-size: 0.9em;">Quantas vezes times jogaram um contra o outro</p>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="emoji">⚡</div>
+                    <div class="label">Gols Marcados</div>
+                    <div class="value">?</div>
+                    <p style="margin-top: 10px; font-size: 0.9em;">Quantos gols foram marcados ao todo</p>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="emoji">🔥</div>
+                    <div class="label">Maior Goleada</div>
+                    <div class="value">?</div>
+                    <p style="margin-top: 10px; font-size: 0.9em;">O jogo com mais gols de uma vez</p>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="emoji">🤐</div>
+                    <div class="label">Partidas 0x0</div>
+                    <div class="value">?</div>
+                    <p style="margin-top: 10px; font-size: 0.9em;">Quantas vezes ninguém marcou gol</p>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="emoji">🎪</div>
+                    <div class="label">Edições da Copa</div>
+                    <div class="value">?</div>
+                    <p style="margin-top: 10px; font-size: 0.9em;">Quantas Copas do Mundo foram analisadas</p>
+                </div>
+            </div>
+
+            <h3>Por que esses números importam? 🤔</h3>
+            <ul class="lista-emoji" style="--emoji-content: '💡';">
+                <li>Mostram a saúde geral da Copa (muitos gols = futebol emocionante)</li>
+                <li>Ajudam a entender padrões e mudanças ao longo do tempo</li>
+                <li>Facilitam comparações entre períodos diferentes</li>
+            </ul>
+        </div>
+
+        <!-- ========== SLIDE 8: OS GRÁFICOS ========== -->
+        <div class="slide">
+            <h2>📈 Os Gráficos que Criamos</h2>
+
+            <p style="margin-bottom: 30px;">O código cria <strong>mais de 10 gráficos diferentes</strong> para visualizar os dados:</p>
+
+            <div class="grid-2">
+                <div class="grid-item">
+                    <div class="emoji-item">🥇</div>
+                    <h3>Top 10 Campeões</h3>
+                    <p><strong>Mostra:</strong> Quais países ganharam mais Copas do Mundo</p>
+                    <p><strong>Por quê:</strong> Vemos quem são as potências</p>
+                </div>
+
+                <div class="grid-item">
+                    <div class="emoji-item">⚡</div>
+                    <h3>Evolução de Gols</h3>
+                    <p><strong>Mostra:</strong> Como a média de gols mudou ano a ano</p>
+                    <p><strong>Por quê:</strong> Entendemos se o futebol ficou mais ou menos emocionante</p>
+                </div>
+
+                <div class="grid-item">
+                    <div class="emoji-item">📊</div>
+                    <h3>Distribuição de Gols</h3>
+                    <p><strong>Mostra:</strong> Quantas partidas teve 1 gol, 2 gols, 3 gols, etc</p>
+                    <p><strong>Por quê:</strong> Vemos qual é o resultado mais comum</p>
+                </div>
+
+                <div class="grid-item">
+                    <div class="emoji-item">🌍</div>
+                    <h3>Força por Confederação</h3>
+                    <p><strong>Mostra:</strong> Quais regiões do mundo têm os melhores times</p>
+                    <p><strong>Por quê:</strong> Entendemos a força de cada continente</p>
+                </div>
+
+                <div class="grid-item">
+                    <div class="emoji-item">👥</div>
+                    <h3>Top 15 Times Vitoriosos</h3>
+                    <p><strong>Mostra:</strong> Quais seleções ganharam mais jogos</p>
+                    <p><strong>Por quê:</strong> Vemos os times mais consistentes</p>
+                </div>
+
+                <div class="grid-item">
+                    <div class="emoji-item">🎯</div>
+                    <h3>Times que Mais Marcaram</h3>
+                    <p><strong>Mostra:</strong> Quais seleções fizeram mais gols</p>
+                    <p><strong>Por quê:</strong> Identificamos times com ataque forte</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== SLIDE 9: TECNOLOGIA ========== -->
+        <div class="slide">
+            <h2>🖥️ A Tecnologia por Trás</h2>
+
+            <h3>A Pilha Técnica (Stack):</h3>
+
+            <div style="margin: 30px 0;">
+                <div class="box">
+                    <strong>Backend (O "coração" do projeto)</strong>
+                    <p style="margin-top: 10px;">✅ Python 3 - Linguagem de programação</p>
+                    <p>✅ Pandas - Manipulação de dados</p>
+                    <p>✅ NumPy - Cálculos numéricos</p>
+                </div>
+
+                <div class="box info">
+                    <strong>Frontend (O que você vê)</strong>
+                    <p style="margin-top: 10px;">✅ Streamlit - Framework para interface</p>
+                    <p>✅ HTML/CSS - Estilos personalizados</p>
+                    <p>✅ Plotly - Gráficos interativos</p>
+                </div>
+
+                <div class="box warning">
+                    <strong>Dados (O combustível)</strong>
+                    <p style="margin-top: 10px;">✅ 3 arquivos CSV</p>
+                    <p>✅ Fonte: Kaggle (repositório de dados)</p>
+                    <p>✅ Período: 1930-2022 (92 anos de história!)</p>
+                </div>
+            </div>
+
+            <div class="destaque">
+                <strong>🎯 Resumindo:</strong> É como um carro: o motor é Python + Pandas, o interior é Streamlit, e o combustível são os dados em CSV!
+            </div>
+        </div>
+
+        <!-- ========== SLIDE 10: BENEFÍCIOS ========== -->
+        <div class="slide">
+            <h2>🎁 Os Benefícios do Projeto</h2>
+
+            <div class="grid-2">
+                <div style="grid-column: 1/-1;">
+                    <h3>Para o Negócio 💼</h3>
+                    <ul class="lista-emoji" style="--emoji-content: '📈';">
+                        <li><strong>Decisões Baseadas em Dados:</strong> Entendemos padrões que ajudam a tomar decisões melhores</li>
+                        <li><strong>Visualização Clara:</strong> Dados complicados viram gráficos simples que qualquer um entende</li>
+                        <li><strong>Histórico Completo:</strong> Temos 92 anos de dados para comparar e aprender</li>
+                        <li><strong>Descoberta de Padrões:</strong> Encontramos insights que não são óbvios à primeira vista</li>
+                    </ul>
+                </div>
+
+                <div style="grid-column: 1/-1;">
+                    <h3>Para os Usuários 👥</h3>
+                    <ul class="lista-emoji" style="--emoji-content: '⭐';">
+                        <li><strong>Fácil de Usar:</strong> Qualquer pessoa, mesmo sem conhecimento técnico, consegue usar</li>
+                        <li><strong>Interativo:</strong> Você pode filtrar por ano, explorar, clicar, mudar dados</li>
+                        <li><strong>Bonito e Moderno:</strong> Interface colorida e agradável de ver</li>
+                        <li><strong>Informação Confiável:</strong> Todos os dados vêm de uma fonte respeitada (Kaggle)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== SLIDE 11: EXEMPLOS DE INSIGHTS ========== -->
+        <div class="slide">
+            <h2>💡 Exemplos de Insights que Podemos Encontrar</h2>
+
+            <p style="margin-bottom: 30px;">Coisas interessantes que o dashboard pode revelar:</p>
+
+            <div class="box success">
+                <strong>🔍 Insight 1:</strong> Em quais períodos a Copa teve mais gols em média?
+                <p style="margin-top: 10px;">Resposta: Comparando o gráfico de evolução temporal, vemos se os anos 2000 tinham mais ou menos gols que os anos 1930</p>
+            </div>
+
+            <div class="box success">
+                <strong>🔍 Insight 2:</strong> Qual confederação produz os melhores times?
+                <p style="margin-top: 10px;">Resposta: Comparando força média das confederações, vemos que Europa está sempre no topo</p>
+            </div>
+
+            <div class="box success">
+                <strong>🔍 Insight 3:</strong> Qual é o resultado mais comum numa partida de Copa?
+                <p style="margin-top: 10px;">Resposta: Olhando o histograma de distribuição de gols, descobrimos que 2-3 gols é mais comum que 5-6</p>
+            </div>
+
+            <div class="box success">
+                <strong>🔍 Insight 4:</strong> Qual time está numa "mala streak"?
+                <p style="margin-top: 10px;">Resposta: Comparando o ranking FIFA com histórico de vitórias, vemos quem está consistentemente bom</p>
+            </div>
+
+            <div class="destaque">
+                <strong>🎯 O Poder dos Dados:</strong> Com um dashboard bem feito, respostas que levariam semanas para descobrir agora levam segundos!
+            </div>
+        </div>
+
+        <!-- ========== SLIDE 12: PRÓXIMOS PASSOS ========== -->
+        <div class="slide">
+            <h2>🚀 Próximos Passos</h2>
+
+            <p style="margin-bottom: 30px;">O projeto pode crescer ainda mais:</p>
+
+            <div class="grid-3">
+                <div class="grid-item">
+                    <div class="emoji-item">🔮</div>
+                    <h3>Previsões</h3>
+                    <p>Usar inteligência artificial para prever o resultado de futuras Copas</p>
+                </div>
+
+                <div class="grid-item">
+                    <div class="emoji-item">📱</div>
+                    <h3>App Mobile</h3>
+                    <p>Criar um aplicativo para celular para acessar os dados em qualquer lugar</p>
+                </div>
+
+                <div class="grid-item">
+                    <div class="emoji-item">🌐</div>
+                    <h3>Dados em Tempo Real</h3>
+                    <p>Conectar com APIs para atualizar dados automaticamente durante Copas</p>
+                </div>
+
+                <div class="grid-item">
+                    <div class="emoji-item">🎥</div>
+                    <h3>Vídeos Insights</h3>
+                    <p>Criar vídeos explicando os principais insights do dashboard</p>
+                </div>
+
+                <div class="grid-item">
+                    <div class="emoji-item">📊</div>
+                    <h3>Análise de Jogadores</h3>
+                    <p>Adicionar dados individuais de jogadores (gols, assistências, etc)</p>
+                </div>
+
+                <div class="grid-item">
+                    <div class="emoji-item">🤖</div>
+                    <h3>IA Explicativa</h3>
+                    <p>Chatbot que responde perguntas sobre os dados em linguagem natural</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== SLIDE 13: CONCLUSÃO ========== -->
+        <div class="slide slide-title">
+            <div class="emoji-grande">🏅</div>
+            <h1>Conclusão</h1>
+
+            <div style="text-align: left; margin-top: 50px; font-size: 1.2em;">
+                <div class="box success" style="margin: 15px 0;">
+                    <strong>✅ O que fizemos:</strong> Transformamos dados chatos de 92 anos de Copa do Mundo em um dashboard bonito e fácil de usar
+                </div>
+
+                <div class="box success" style="margin: 15px 0;">
+                    <strong>✅ Por que é importante:</strong> Dados sem visualização são inúteis. Este projeto torna dados úteis e acessíveis
+                </div>
+
+                <div class="box success" style="margin: 15px 0;">
+                    <strong>✅ Tecnologia usada:</strong> Python, Pandas, Plotly, Streamlit - as melhores ferramentas para análise de dados
+                </div>
+
+                <div class="box success" style="margin: 15px 0;">
+                    <strong>✅ Resultado:</strong> Um projeto que qualquer pessoa pode usar para entender Copa do Mundo de forma visual e divertida!
+                </div>
+            </div>
+
+            <p style="margin-top: 60px; font-size: 1.3em; color: #667eea;"><strong>🎯 Dados bem visualizados = Decisões melhores = Sucesso!</strong></p>
+        </div>
+
+        <!-- ========== SLIDE 14: OBRIGADO ========== -->
+        <div class="slide slide-title">
+            <div class="emoji-grande">🙏</div>
+            <h1>Muito Obrigado!</h1>
+            <p style="font-size: 1.3em; margin-top: 30px;">Dúvidas ou sugestões?</p>
+            <p style="color: #999; margin-top: 40px;">Projeto de Análise de Dados - Copa do Mundo FIFA (1930-2022)</p>
+        </div>
+
+    </div>
+
+    <!-- CONTROLES DE NAVEGAÇÃO -->
+    <div class="controls">
+        <button id="prevBtn" onclick="changeSlide(-1)">← Anterior</button>
+        <div class="slide-counter">
+            <span id="slideNumber">1</span> / <span id="totalSlides">14</span>
+        </div>
+        <button id="nextBtn" onclick="changeSlide(1)">Próximo →</button>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        document.getElementById('totalSlides').textContent = totalSlides;
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+
+            if (n > totalSlides) {
+                currentSlide = totalSlides;
+            }
+            if (n < 1) {
+                currentSlide = 1;
+            }
+
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[currentSlide - 1].classList.add('active');
+
+            document.getElementById('slideNumber').textContent = currentSlide;
+            document.getElementById('prevBtn').disabled = currentSlide === 1;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
+        }
+
+        function changeSlide(n) {
+            currentSlide += n;
+            showSlide(currentSlide);
+        }
+
+        // Controle de teclado
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowLeft') {
+                changeSlide(-1);
+            } else if (event.key === 'ArrowRight') {
+                changeSlide(1);
+            }
+        });
+
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
